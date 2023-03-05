@@ -1,0 +1,16 @@
+{
+  "template": "git@github.com:UrbanMachine/cookiecutter-python-template.git",
+  "commit": "3fd3975ff84be1b9a28238a3e27ad4ebbde4e597",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "email": "apocthiel@gmail.com",
+      "github_org": "apockill",
+      "project_name": "clai",
+      "description": "Command Line AI- this tool lets you call ChatGPT from a CLI",
+      "version": "0.1.0",
+      "_template": "git@github.com:UrbanMachine/cookiecutter-python-template.git"
+    }
+  },
+  "directory": null
+}
