@@ -19,10 +19,18 @@ _________________
 _________________
 
 ## Installation
-The recommended installation method is to use `pipx`, via
-```
-pipx install clai
-```
+1. The recommended installation method is to use `pipx`, via
+    ```
+    pipx install clai
+    ```
+
+1. Then go to [OpenAI] and create an API Key. Once it's generated, add the following to 
+   your `.bashrc`:
+   ```bash
+   export OPENAI_API_TOKEN=<paste here>
+   ```
+
+[OpenAI]: https://platform.openai.com/account/api-keys
 
 ## Usage
 Invoke the assistant with the format `clai <your prompt>`. For example:
