@@ -1,5 +1,9 @@
 # clai
-Command Line AI- this tool lets you call ChatGPT from a CLI
+Command Line AI- this tool lets you call ChatGPT from a CLI. 
+
+I'm designing this to be used in conjunction with a fork of `shin`, which will allow you
+to call `clai` from any textbox in your computer. Finally, chatGPT everywhere!
+
 _________________
 
 [![PyPI version](https://badge.fury.io/py/clai.svg)](http://badge.fury.io/py/clai)
@@ -12,6 +16,18 @@ _________________
 
 [Read Latest Documentation](https://apockill.github.io/clai/) - [Browse GitHub Code Repository](https://github.com/apockill/clai/)
 _________________
+
+## Installation
+The recommended installation method is to use `pipx`, via
+```
+pipx install clai
+```
+
+## Usage
+Invoke the assistant with the format `clai <your prompt>`. For example:
+```
+clai Write an email saying I'll be late to work because I'm working on commandline AIs
+```
 
 ## Development
 
