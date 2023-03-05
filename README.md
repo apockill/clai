@@ -1,9 +1,10 @@
 # clai
 Command Line AI- this tool lets you call ChatGPT from a CLI. 
 
-I'm designing this to be used in conjunction with a fork of `shin`, which will allow you
+I'm designing this to be used in conjunction with a fork of [shin][shin], which will allow you
 to call `clai` from any textbox in your computer. Finally, chatGPT everywhere!
 
+[shin]: https://github.com/apockill/shin
 _________________
 
 [![PyPI version](https://badge.fury.io/py/clai.svg)](http://badge.fury.io/py/clai)
