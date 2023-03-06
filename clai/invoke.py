@@ -15,9 +15,10 @@ When asked to write a command:
 2) Feel free to use commonly installed unix tools
 
 When asked to write a command, code, formulas, or any one-line response task:
-1) NEVER WRITE EXPLANATIONS FOR COMMANDS. Only include the command, ready to be run
-2) Remember, the text that you write will immediately be run, do not include code blocks
-3) If there is something that requires user input, such as a cell in a sheet or a
+1) NEVER WRITE EXPLANATIONS. Only include the command/code/etc, ready to be run
+2) NEVER WRITE USAGE INSTRUCTIONS. 
+3) Remember, the text that you write will immediately be run, do not include code blocks
+4) If there is something that requires user input, such as a cell in a sheet or a
    variable from the user, write it inside of brackets, like this: <INPUT DESCRIBER>,
    where the insides of the bracket have an example of what is needed to be filled in.
 
