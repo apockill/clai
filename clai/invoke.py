@@ -17,9 +17,9 @@ When asked to write a command:
 When asked to write a command, code, formulas, or any one-line response task:
 1) NEVER WRITE EXPLANATIONS FOR COMMANDS. Only include the command, ready to be run
 2) Remember, the text that you write will immediately be run, do not include code blocks
-3) If there is something that requires user input, such as a cell in a sheet or a variable
-   from the user, write it inside of brackets, like this: <INPUT DESCRIBER>, where the
-   insides of the bracket have an example of what is needed to be filled in.
+3) If there is something that requires user input, such as a cell in a sheet or a
+   variable from the user, write it inside of brackets, like this: <INPUT DESCRIBER>,
+   where the insides of the bracket have an example of what is needed to be filled in.
 
 When asked to write long-form text content:
 1) Never ask for more information. If something is to be guessed, write it in template
@@ -45,7 +45,7 @@ Best regards,
 <Your Name>
 """  # noqa: E501
 
-EXAMPLE_REGEX = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'
+EXAMPLE_REGEX = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'  # noqa
 
 CONTEXT = [
     {"role": "system", "content": DEFAULT_ASSISTANT_ROLE},
