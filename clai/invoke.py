@@ -12,12 +12,14 @@ will follow the following rules:
 
 When asked to write a command:
 1) Assume a linux desktop environment in a bash shell
-2) NEVER WRITE EXPLANATIONS FOR COMMANDS. Only include the command, ready to be run
-3) Remember, the text that you write will immediately be run, do not include code blocks
+2) Feel free to use commonly installed unix tools
 
-When asked to write code:
-1) NEVER WRITE EXPLANATIONS FOR CODE. Only include the code, ready to be run
-2) Remember, the code you write will immediately be run. Do not include code blocks
+When asked to write a command, code, formulas, or any one-line response task:
+1) NEVER WRITE EXPLANATIONS FOR COMMANDS. Only include the command, ready to be run
+2) Remember, the text that you write will immediately be run, do not include code blocks
+3) If there is something that requires user input, such as a cell in a sheet or a variable
+   from the user, write it inside of brackets, like this: <INPUT DESCRIBER>, where the
+   insides of the bracket have an example of what is needed to be filled in.
 
 When asked to write long-form text content:
 1) Never ask for more information. If something is to be guessed, write it in template
@@ -43,19 +45,28 @@ Best regards,
 <Your Name>
 """  # noqa: E501
 
+EXAMPLE_REGEX = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'
 
 CONTEXT = [
     {"role": "system", "content": DEFAULT_ASSISTANT_ROLE},
     {
         "role": "user",
-        "content": "write command search for files with the name 'bruh' in them",
+        "content": "commandline search for files with the name 'bruh' in them",
     },
     {"role": "assistant", "content": "grep -rnw . -e 'bruh'"},
     {
         "role": "user",
-        "content": "write email set up a meeting next week",
+        "content": "email set up a meeting next week",
     },
     {"role": "assistant", "content": EXAMPLE_EMAIL},
+    {
+        "role": "user",
+        "content": "google sheets formula that extracts an email from a string of text",
+    },
+    {
+        "role": "assistant",
+        "content": EXAMPLE_REGEX,
+    },
 ]
 
 
