@@ -47,6 +47,13 @@ Best regards,
 
 EXAMPLE_REGEX = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'  # noqa
 
+EXAMPLE_PYTHON = """
+def fibonacci(n: int) -> Generator[int, None, None]:
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+"""
 CONTEXT = [
     {"role": "system", "content": DEFAULT_ASSISTANT_ROLE},
     {
@@ -61,11 +68,19 @@ CONTEXT = [
     {"role": "assistant", "content": EXAMPLE_EMAIL},
     {
         "role": "user",
-        "content": "google sheets formula that extracts an email from a string of text",
+        "content": "google sheets formula extracts an email from string of text",
     },
     {
         "role": "assistant",
         "content": EXAMPLE_REGEX,
+    },
+    {
+        "role": "user",
+        "content": "python fibonacci function in form of a generator",
+    },
+    {
+        "role": "assistant",
+        "content": EXAMPLE_PYTHON,
     },
 ]
 
