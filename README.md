@@ -2,7 +2,10 @@
 Command Line AI- this tool lets you call ChatGPT from a CLI. 
 
 I'm designing this to be used in conjunction with a fork of [shin][shin], which will allow you
-to call `clai` from any textbox in your computer. Finally, chatGPT everywhere!
+to call `clai` from any textbox in your computer. Finally, ChatGPT everywhere!
+
+The long-term vision for this project is to add support for extracting context. For example, it would
+read the current text on a window and be able to add to it, or answer questions about it.
 
 _________________
 
