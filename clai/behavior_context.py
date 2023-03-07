@@ -41,7 +41,8 @@ Best regards,
 <Your Name>
 """  # noqa: E501
 
-_EXAMPLE_REGEX = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'  # noqa
+_EXAMPLE_GOOGLE_SHEETS = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'  # noqa
+_EXAMPLE_BASH_COMMAND = "grep -rnw . -e 'bruh'"
 
 _EXAMPLE_PYTHON = """
 def fibonacci(n: int) -> Generator[int, None, None]:
@@ -51,32 +52,36 @@ def fibonacci(n: int) -> Generator[int, None, None]:
         a, b = b, a + b
 """
 
+_SYSTEM_ROLE = "system"
+_USER_ROLE = "user"
+_ASSISTANT_ROLE = "assistant"
+
 MESSAGE_CONTEXT = [
-    {"role": "system", "content": _DEFAULT_ASSISTANT_ROLE},
+    {"role": _SYSTEM_ROLE, "content": _DEFAULT_ASSISTANT_ROLE},
     {
-        "role": "user",
+        "role": _USER_ROLE,
         "content": "commandline search for files with the name 'bruh' in them",
     },
-    {"role": "assistant", "content": "grep -rnw . -e 'bruh'"},
+    {"role": _ASSISTANT_ROLE, "content": _EXAMPLE_BASH_COMMAND},
     {
-        "role": "user",
+        "role": _USER_ROLE,
         "content": "email set up a meeting next week",
     },
-    {"role": "assistant", "content": _EXAMPLE_EMAIL},
+    {"role": _ASSISTANT_ROLE, "content": _EXAMPLE_EMAIL},
     {
-        "role": "user",
+        "role": _USER_ROLE,
         "content": "google sheets formula extracts an email from string of text",
     },
     {
-        "role": "assistant",
-        "content": _EXAMPLE_REGEX,
+        "role": _ASSISTANT_ROLE,
+        "content": _EXAMPLE_GOOGLE_SHEETS,
     },
     {
-        "role": "user",
+        "role": _USER_ROLE,
         "content": "python fibonacci function in form of a generator",
     },
     {
-        "role": "assistant",
+        "role": _ASSISTANT_ROLE,
         "content": _EXAMPLE_PYTHON,
     },
 ]
