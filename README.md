@@ -4,7 +4,6 @@ Command Line AI- this tool lets you call ChatGPT from a CLI.
 I'm designing this to be used in conjunction with a fork of [shin][shin], which will allow you
 to call `clai` from any textbox in your computer. Finally, chatGPT everywhere!
 
-[shin]: https://github.com/apockill/shin
 _________________
 
 [![PyPI version](https://badge.fury.io/py/clai.svg)](http://badge.fury.io/py/clai)
@@ -25,10 +24,19 @@ _________________
     ```
 
 1. Then go to [OpenAI] and create an API Key. Once it's generated, add the following to 
-   your `.bashrc`:
+   your `~/.profile`:
    ```bash
    export OPENAI_API_TOKEN=<paste here>
    ```
+
+1. The best way to use this tool is in conjunction with the tool [shin][shin], which allows you
+   to run arbitrary bash commands in any textbox in a linux computer, using ibus. To use 
+   that, install 'shin' via the fork above, then configure
+   it in your `~/.profile` to call `clai` by default:
+   ```bash
+   export SHIN_DEFAULT_COMMAND="clai"
+   ```
+1. Log out then log back in for the changes to take effect!
 
 [OpenAI]: https://platform.openai.com/account/api-keys
 
@@ -37,6 +45,7 @@ Invoke the assistant with the format `clai <your prompt>`. For example:
 ```
 clai Write an email saying I'll be late to work because I'm working on commandline AIs
 ```
+
 
 ## Development
 
@@ -59,3 +68,5 @@ bash .github/format.sh
 ```shell
 bash .github/check_lint.sh
 ```
+
+[shin]: https://github.com/apockill/shin
