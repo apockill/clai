@@ -7,14 +7,14 @@ from .behavior_context import MESSAGE_CONTEXT
 def invoke() -> None:
     parser = ArgumentParser("CLAI- your own command line AI!")
     parser.add_argument("prompt", type=str, nargs="+")
-    parser.add_argument("-e", "--engine", default="")
+    parser.add_argument("-m", "--model", default="gpt-3.5-turbo")
     args = parser.parse_args()
 
     openai = initialize_api()
 
     prompt = " ".join(args.prompt)
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model=args.model,
         messages=[*MESSAGE_CONTEXT, {"role": "user", "content": prompt}],
     )
 
