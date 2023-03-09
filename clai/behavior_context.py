@@ -86,7 +86,7 @@ When asked to write a command, code, formulas, or any one-line response task:
    where the insides of the bracket have an example of what is needed to be filled in.
 6) Assume a linux desktop environment in a bash shell. Use freely available unix tools.
 
-You will receive OCR context and window title names, for some prompts. They are very 
+You will receive OCR context and window title names, for some prompts. They are very
 noisy, use best-effort when reading them.
 """
 _EXAMPLE_EMAIL = """

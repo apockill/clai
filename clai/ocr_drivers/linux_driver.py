@@ -1,5 +1,3 @@
-from typing import cast
-
 import pyautogui
 import pytesseract
 import pywinctl
@@ -17,7 +15,7 @@ class LinuxOCRDriver(BaseOCRDriver):
 
         return WindowContext(
             raw_screen_text=raw_ocr_text,
-            active_window_name=cast(str, pywinctl.getActiveWindowTitle()),
+            active_window_name=pywinctl.getActiveWindowTitle(),  # type: ignore
         )
 
     def _extract_active_window_screenshot(self) -> Image:
