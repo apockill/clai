@@ -19,4 +19,4 @@ def main() -> None:
     )
 
     best_response = response["choices"][0]["message"]["content"]
-    print(best_response.strip())
+    print(best_response)
