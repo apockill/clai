@@ -1,3 +1,65 @@
+from dataclasses import dataclass
+from typing import Literal, Union
+
+from clai.ocr_drivers import WindowContext
+
+USER_PROMPT_FORMAT = """
+User Prompt:
+```
+{user_prompt}
+```
+"""
+OCR_EXTRACTION_FORMAT = """
+Active Window Title: {active_window_title}
+
+Active Window OCR Extracted Text (RAW):
+------ OCR DATA START ------
+```
+{ocr_text}
+```
+------ OCR DATA END ------
+
+{user_prompt}
+
+Please answer "User Prompt" using the raw OCR text as context to the message.
+"""
+
+
+@dataclass
+class Prompt:
+    context: WindowContext
+    prompt: str
+
+    def __str__(self) -> str:
+        """Serialize the Prompt with differing formats, depending on whether window
+        content was available
+
+        :return: The window context and prompt in a standardized format
+        """
+        """."""
+        user_prompt = USER_PROMPT_FORMAT.format(user_prompt=self.prompt.strip())
+        if self.context.clean_screen_text and self.context.active_window_name:
+            return OCR_EXTRACTION_FORMAT.format(
+                active_window_title=self.context.active_window_name.strip(),
+                ocr_text=self.context.clean_screen_text.strip(),
+                user_prompt=user_prompt.strip(),
+            )
+        return user_prompt.strip()
+
+
+@dataclass
+class Message:
+    role: Literal["system", "user", "assistant"]
+    content: Union[Prompt, str]
+
+    def to_api(self) -> dict[str, str]:
+        """To OpenAPI format"""
+        if isinstance(self.content, str) and self.role == "user":
+            raise RuntimeError("The user message must be of type Prompt!")
+
+        return {"role": self.role, "content": str(self.content)}
+
+
 _DEFAULT_ASSISTANT_ROLE = """
 You are an assistant that is capable of being called anywhere on a desktop computer. You
 may be called within the context of an email, a URL box, commandline, a text editor, or
@@ -24,7 +86,6 @@ When asked to write a command, code, formulas, or any one-line response task:
    where the insides of the bracket have an example of what is needed to be filled in.
 6) Assume a linux desktop environment in a bash shell. Use freely available unix tools.
 """
-
 _EXAMPLE_EMAIL = """
 Dear <Recipient's Name>,
 
@@ -40,10 +101,7 @@ Best regards,
 
 <Your Name>
 """  # noqa: E501
-
-_EXAMPLE_GOOGLE_SHEETS = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'  # noqa
-_EXAMPLE_BASH_COMMAND = "grep -rnw . -e 'bruh'"
-
+_EXAMPLE_REGEX = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'  # noqa
 _EXAMPLE_PYTHON = """
 def fibonacci(n: int) -> Generator[int, None, None]:
     a, b = 0, 1
@@ -51,38 +109,50 @@ def fibonacci(n: int) -> Generator[int, None, None]:
         yield a
         a, b = b, a + b
 """
+_EXAMPLE_GOOGLE_SHEETS = '=IFERROR(REGEXEXTRACT(<INPUT CELL HERE>, "[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}");"")'  # noqa
+_EXAMPLE_BASH_COMMAND = "grep -rnw . -e 'bruh'"
 
-_SYSTEM_ROLE = "system"
-_USER_ROLE = "user"
-_ASSISTANT_ROLE = "assistant"
-
-MESSAGE_CONTEXT = [
-    {"role": _SYSTEM_ROLE, "content": _DEFAULT_ASSISTANT_ROLE},
-    {
-        "role": _USER_ROLE,
-        "content": "commandline search for files with the name 'bruh' in them",
-    },
-    {"role": _ASSISTANT_ROLE, "content": _EXAMPLE_BASH_COMMAND},
-    {
-        "role": _USER_ROLE,
-        "content": "email set up a meeting next week",
-    },
-    {"role": _ASSISTANT_ROLE, "content": _EXAMPLE_EMAIL},
-    {
-        "role": _USER_ROLE,
-        "content": "google sheets formula extracts an email from string of text",
-    },
-    {
-        "role": _ASSISTANT_ROLE,
-        "content": _EXAMPLE_GOOGLE_SHEETS,
-    },
-    {
-        "role": _USER_ROLE,
-        "content": "python fibonacci function in form of a generator",
-    },
-    {
-        "role": _ASSISTANT_ROLE,
-        "content": _EXAMPLE_PYTHON,
-    },
+MESSAGE_CONTEXT: list[Message] = [
+    Message(role="system", content=_DEFAULT_ASSISTANT_ROLE),
+    Message(
+        role="user",
+        content=Prompt(
+            WindowContext(),
+            prompt="commandline search for files with the name 'bruh' in them",
+        ),
+    ),
+    Message(role="assistant", content=_EXAMPLE_BASH_COMMAND),
+    Message(
+        role="user",
+        content=Prompt(
+            context=WindowContext(), prompt="email set up a meeting next week"
+        ),
+    ),
+    Message(role="assistant", content=_EXAMPLE_EMAIL),
+    Message(
+        role="user",
+        content=Prompt(
+            context=WindowContext(),
+            prompt="google sheets formula extracts an email from string of text",
+        ),
+    ),
+    Message(role="assistant", content=_EXAMPLE_GOOGLE_SHEETS),
+    Message(
+        role="user",
+        content=Prompt(
+            context=WindowContext(),
+            prompt="google sheets formula extracts an email from string of text",
+        ),
+    ),
+    Message(role="assistant", content=_EXAMPLE_REGEX),
+    Message(
+        role="user",
+        content=Prompt(
+            context=WindowContext(),
+            prompt="python fibonacci function in form of a generator",
+        ),
+    ),
+    Message(role="assistant", content=_EXAMPLE_PYTHON),
 ]
-__all__ = ["MESSAGE_CONTEXT"]
+
+__all__ = ["MESSAGE_CONTEXT", "Message", "Prompt"]

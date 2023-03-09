@@ -21,11 +21,15 @@ _________________
 _________________
 
 ## Installation
+
 1. The recommended installation method is to use `pipx`, via
-    ```
+    ```bash
     pipx install clai
     ```
-
+   Optionally, install `tesseract` so that `clai` can read the screen context and send that along with requests:
+   ```bash
+   sudo apt install tesseract-ocr scrot
+   ```
 1. Then go to [OpenAI] and create an API Key. Once it's generated, add the following to 
    your `~/.profile`:
    ```bash
