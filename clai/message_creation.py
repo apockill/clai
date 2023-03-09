@@ -17,5 +17,4 @@ def create_message_context(prompt: str) -> list[dict[str, str]]:
         Message(role="user", content=Prompt(context=window_context, prompt=prompt))
     )
     api_format = [m.to_api() for m in new_context]
-    print("CONTEXT", api_format[-1]["content"])
     return api_format
