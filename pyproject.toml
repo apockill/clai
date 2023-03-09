@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clai"
-version = "0.1.0"
+version = "0.2.0"
 description = "Command Line AI- this tool lets you call ChatGPT from a CLI"
 authors = ["apockill <apocthiel@gmail.com>"]
 license = "Proprietary"
