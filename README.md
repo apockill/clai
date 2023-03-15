@@ -28,7 +28,7 @@ _________________
     ```
    Optionally, install `tesseract` so that `clai` can read the screen context and send that along with requests:
    ```bash
-   sudo apt install tesseract-ocr scrot
+   sudo apt install tesseract-ocr scrot python3-tk python3-dev
    ```
 1. Then go to [OpenAI] and create an API Key. Once it's generated, add the following to 
    your `~/.profile`:
@@ -76,4 +76,4 @@ bash .github/format.sh
 bash .github/check_lint.sh
 ```
 
-[shin]: https://github.com/apockill/shin
+[shin]: https://github.com/apockill/shin/tree/feature/arbitrary-commands
