@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clai"
-version = "0.1.0"
+version = "0.3.0"
 description = "Command Line AI- this tool lets you call ChatGPT from a CLI"
 authors = ["apockill <apocthiel@gmail.com>"]
 license = "Proprietary"
@@ -9,6 +9,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.8"
 openai = "^0.27.0"
+pytesseract = "^0.3.10"
+PyAutoGUI = "^0.9.53"
+PyWinCtl = "^0.0.43"
 
 [tool.poetry.dev-dependencies]
 darglint = "^1.8.1"
@@ -25,8 +28,8 @@ portray = "^1.7"
 cruft = "^2.10"
 
 [tool.poetry.scripts]
-clai = "clai:invoke"
-ai = "clai:invoke"
+clai = "clai:main"
+ai = "clai:main"
 
 [build-system]
 requires = ["poetry>=0.12"]
